@@ -1,0 +1,10 @@
+---
+- name: uninstall_httpd_playbook
+  hosts: linux
+  remote_user: root
+  become: true
+  tasks:
+          - name: uninstall httpd
+            yum:
+                  name: httpd
+                  state: absent

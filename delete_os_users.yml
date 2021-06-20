@@ -1,0 +1,28 @@
+---
+- name: delete_os_users_playbook
+  hosts: linux
+  remote_user: root
+  become: true
+  tasks:
+          - name: delete groups
+            group:
+                  name: "{{item}}"
+                  state: absent
+            with_items:
+              - devops
+              - networking
+              - developers
+              - engineers
+          - name: delete user Lisa
+            user:
+                    name: Lisa
+                    state: absent
+                    groups:
+                      - devops
+                      - developers
+          - name: delete user Bill
+            user:
+                    name: Bill
+                    state: absent
+                    groups:
+                      - engineers
