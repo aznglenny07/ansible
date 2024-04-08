@@ -1,6 +1,6 @@
 ---
 - name: install_httpd_playbook
-  hosts: linux
+  hosts: linux_web_hosts
   remote_user: root
   become: true
   tasks:
@@ -12,6 +12,11 @@
             service:
                     name: httpd
                     state: started
+          - name: stop firewall
+            service:
+                    name: firewalld
+                    state: stopped
+                    enabled: no
           - name: create content
             copy:
                     content: "Ansible is installed."

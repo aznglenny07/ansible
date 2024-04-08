@@ -1,6 +1,6 @@
 ---
 - name: uninstall_httpd_playbook
-  hosts: linux
+  hosts: linux_web_hosts
   remote_user: root
   become: true
   tasks:
@@ -8,3 +8,9 @@
             yum:
                   name: httpd
                   state: absent
+
+          - name: start firewalld
+            service:
+                    name: firewalld
+                    state: started
+                    enabled: yes

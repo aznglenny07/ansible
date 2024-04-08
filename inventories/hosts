@@ -1,6 +1,5 @@
 [linux]
 192.168.1.151
-192.168.1.169
 
 [linux:vars]
 ansible_user=root
