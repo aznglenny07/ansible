@@ -1,6 +1,11 @@
-[linux]
-192.168.1.151
+[linux_web_hosts]
+192.168.0.155 ansible_connection=ssh ansible_ssh_user='{{ linux_os_user }}' ansible_port=22 ansible_ssh_pass='{{ vault_os_pwd }}'
 
-[linux:vars]
-ansible_user=root
-ansible_password=loveya
+[linux_db_hosts]
+
+[hosts:children]
+linux_web_hosts
+linux_db_hosts
+
+[all:vars]
+linux_os_user=oracle
